@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王純琳 | 個人簡介</title>
+    <title>王純琳 | 數位多媒體與資訊專業個人檔案</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,162 +12,467 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+                    },
+                    colors: {
+                        surface: '#F8FAFC',
+                        card: '#FFFFFF',
+                        primary: {
+                            50: '#EEF2FF',
+                            100: '#E0E7FF',
+                            500: '#6366F1',
+                            600: '#4F46E5',
+                            700: '#4338CA',
+                        }
                     }
                 }
             }
         }
     </script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans (英文數字專業感) & Noto Sans TC (繁體中文) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- FontAwesome -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
         }
-        /* Custom vibrant animated gradient background */
-        .bg-vibrant {
-            background: linear-gradient(-45deg, #f6d365, #fda085, #ff9a9e, #fecfef);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+        /* 極簡科技網格背景紋理 */
+        .bg-grid-pattern {
+            background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+            background-size: 24px 24px;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* 卡片微幅懸浮過渡 */
+        .hover-lift {
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(15, 23, 42, 0.08);
+            border-color: #C7D2FE;
         }
     </style>
 </head>
-<body class="bg-vibrant min-h-screen flex items-center justify-center p-6 antialiased">
+<body class="bg-surface bg-grid-pattern min-h-screen antialiased selection:bg-primary-100 selection:text-primary-700">
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 transform translate-y-10 opacity-0 transition-all duration-300 ease-in-out pointer-events-none">
-        <div class="bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 text-sm font-medium">
-            <i class="fa-solid fa-check-circle text-green-400"></i>
+    <!-- 頂部極簡導覽列 -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5 font-extrabold text-slate-800 tracking-tight text-lg">
+                <span class="w-8 h-8 rounded-xl bg-primary-600 text-white flex items-center justify-center text-sm shadow-sm">
+                    CL
+                </span>
+                <span>王純琳</span>
+            </a>
+            <nav class="hidden sm:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="#about" class="hover:text-primary-600 transition-colors">關於我</a>
+                <a href="#expertise" class="hover:text-primary-600 transition-colors">專業與技能</a>
+                <a href="#projects" class="hover:text-primary-600 transition-colors">學習與作品</a>
+                <a href="#contact" class="px-4 py-2 rounded-full bg-slate-900 text-white hover:bg-primary-600 transition-colors text-xs font-bold tracking-wide">
+                    聯繫我
+                </a>
+            </nav>
+            <!-- 手機版快速聯繫按鈕 -->
+            <a href="#contact" class="sm:hidden px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-xs font-bold">
+                聯繫我
+            </a>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main class="max-w-4xl mx-auto px-6 py-10 sm:py-14 space-y-12">
+
+        <!-- 1. 個人核心名片區塊 (Hero Profile Card) -->
+        <section id="about" class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-8 sm:p-10 relative overflow-hidden">
+            <!-- 右上角裝飾光暈 -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-50 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
+
+            <div class="relative flex flex-col sm:flex-row items-center sm:items-start gap-8">
+                <!-- 個人頭像 -->
+                <div class="relative shrink-0">
+                    <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-3xl p-1.5 bg-gradient-to-tr from-primary-500 via-indigo-400 to-sky-300 shadow-md">
+                        <!-- 💡 替換照片說明：請將下方 src="..." 內的網址替換為您的真實個人照片網址或檔案路徑 -->
+                        <img src="https://placehold.co/400x400/e0e7ff/4f46e5?text=Photo"
+                             onerror="this.src='https://placehold.co/400x400/f1f5f9/64748b?text=Wang'"
+                             alt="王純琳的個人照片"
+                             class="w-full h-full object-cover rounded-[1.25rem] bg-white border-2 border-white">
+                    </div>
+                    <!-- 狀態小標籤 -->
+                    <span class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm text-[11px] font-bold text-emerald-600 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        學習與創作中
+                    </span>
+                </div>
+
+                <!-- 個人簡介資訊 -->
+                <div class="flex-1 text-center sm:text-left space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-bold tracking-wide">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>黎明技術學院 數位多媒體系</span>
+                    </div>
+
+                    <div class="space-y-1">
+                        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                            王純琳
+                        </h1>
+                        <p class="text-sm font-semibold text-slate-400 tracking-wider uppercase">
+                            Digital Multimedia &amp; Information Studies
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 text-base leading-relaxed pt-1">
+                        「喜歡簡單生活，也喜歡學中文。」<br>
+                        <span class="text-sm text-slate-500">
+                            專注於數位多媒體設計與資訊基礎應用，結合邏輯運算思維與視覺表達，持續探索網頁互動與數位內容創作的可能性。
+                        </span>
+                    </p>
+
+                    <!-- 快速行動與聯繫按鈕列 -->
+                    <div class="pt-3 flex flex-wrap items-center justify-center sm:justify-start gap-3">
+                        <button onclick="copyToClipboard('bd1151016@venus.lit.edu.tw', 'Email')" class="px-4 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold shadow-sm shadow-primary-200 transition-all flex items-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>複製 Email</span>
+                        </button>
+                        <button onclick="copyToClipboard('sweettyi3', 'Line ID')" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-200/80 hover:border-emerald-200 text-sm font-bold transition-all flex items-center gap-2 cursor-pointer">
+                            <i class="fa-brands fa-line text-emerald-600 text-base"></i>
+                            <span>Line: sweettyi3</span>
+                        </button>
+                        <a href="https://instagram.com/yustfeels_" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-rose-50 text-slate-700 hover:text-rose-600 border border-slate-200/80 hover:border-rose-200 text-sm font-bold transition-all flex items-center gap-2">
+                            <i class="fa-brands fa-instagram text-rose-500 text-base"></i>
+                            <span>@yustfeels_</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 資訊專業與個人技能 (Core Competencies & Interests) -->
+        <section id="expertise" class="space-y-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-primary-600 text-lg"></i>
+                        專業領域與個人特質
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">結合資訊邏輯、多媒體應用與生活自律</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- 卡片 1：資訊與多媒體專業 -->
+                <div class="bg-white rounded-2xl border border-slate-200/90 p-6 hover-lift flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">數位多媒體與網頁基礎</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            學習數位媒體整合、前端網頁結構（HTML / CSS）與視覺版面編排，將創意轉化為清晰的數位介面。
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-100 flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 text-xs font-semibold">HTML5 / UI</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 text-xs font-semibold">數位多媒體</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 2：邏輯與數理分析 -->
+                <div class="bg-white rounded-2xl border border-slate-200/90 p-6 hover-lift flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">微積分與邏輯思維</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            擅長微積分運算與抽象邏輯推演，具備良好的數理基礎，能以結構化、系統化的方式拆解資訊問題。
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-100 flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-sky-50 text-sky-700 text-xs font-semibold">微積分</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 text-xs font-semibold">邏輯分析</span>
+                    </div>
+                </div>
+
+                <!-- 卡片 3：運動自律與生活美學 -->
+                <div class="bg-white rounded-2xl border border-slate-200/90 p-6 hover-lift flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-11 h-11 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-person-swimming"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">運動專長與藝術興趣</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            透過游泳培養專注力與耐力；日常喜愛唱歌、聽音樂與學習中文，為數位創作注入感性與語言溫度。
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-100 flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 text-xs font-semibold"><i class="fa-solid fa-person-swimming mr-1"></i>游泳</span>
+                        <span class="px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-semibold"><i class="fa-solid fa-microphone-lines mr-1"></i>唱歌</span>
+                        <span class="px-2.5 py-1 rounded-md bg-rose-50 text-rose-600 text-xs font-semibold"><i class="fa-solid fa-headphones mr-1"></i>聽音樂</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 學習歷程與作品展示區 (Projects & Learning Showcase - 可點擊預覽詳情) -->
+        <section id="projects" class="space-y-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-primary-600 text-lg"></i>
+                        學習歷程與精選專案
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">點擊卡片可檢視專案說明（可隨時替換為您的課堂作品連結）</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <!-- 專案卡片 1 -->
+                <article onclick="openProjectModal(0)" class="group bg-white rounded-2xl border border-slate-200/90 p-6 hover-lift cursor-pointer flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-bold">
+                                網頁設計實作
+                            </span>
+                            <span class="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-primary-600 group-hover:text-white text-slate-400 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-primary-600 transition-colors">
+                            響應式個人數位名片與簡介網頁
+                        </h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            運用 HTML5 與 Tailwind CSS 建構的單一檔案個人品牌網站，整合一鍵複製剪貼簿 API 與響應式排版設計。
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+                        <span>前端設計 / UI 排版</span>
+                        <span class="text-primary-600 font-semibold group-hover:underline">檢視詳情 →</span>
+                    </div>
+                </article>
+
+                <!-- 專案卡片 2 -->
+                <article onclick="openProjectModal(1)" class="group bg-white rounded-2xl border border-slate-200/90 p-6 hover-lift cursor-pointer flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-bold">
+                                數位多媒體與數理
+                            </span>
+                            <span class="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-sky-600 group-hover:text-white text-slate-400 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
+                            多媒體視覺敘事與基礎運算筆記
+                        </h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            結合數位多媒體系課程所學之視覺構圖概念，與微積分邏輯推導筆記整理，建立系統化的數位學習檔案。
+                        </p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+                        <span>視覺整合 / 知識管理</span>
+                        <span class="text-sky-600 font-semibold group-hover:underline">檢視詳情 →</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 4. 聯繫與社群名片區 (Contact Footer Card) -->
+        <section id="contact" class="bg-white rounded-3xl border border-slate-200/90 p-8 shadow-sm">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left space-y-1.5">
+                    <h2 class="text-xl font-extrabold text-slate-900">歡迎與我聯繫交流</h2>
+                    <p class="text-sm text-slate-500">
+                        無論是課業討論、多媒體專案合作，或是語言與音樂交流，都歡迎透過以下方式找到我。
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 shrink-0">
+                    <!-- Email 複製按鈕 -->
+                    <button onclick="copyToClipboard('bd1151016@venus.lit.edu.tw', 'Email')"
+                            class="px-4 py-3 rounded-2xl bg-slate-50 hover:bg-primary-50 text-slate-700 hover:text-primary-700 border border-slate-200 hover:border-primary-200 transition-all flex items-center gap-2.5 text-sm font-bold cursor-pointer group"
+                            title="點擊複製 Email">
+                        <i class="fa-solid fa-envelope text-primary-600 group-hover:scale-110 transition-transform"></i>
+                        <span>Email</span>
+                    </button>
+
+                    <!-- Line ID 複製按鈕 -->
+                    <button onclick="copyToClipboard('sweettyi3', 'Line ID')"
+                            class="px-4 py-3 rounded-2xl bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-200 hover:border-emerald-200 transition-all flex items-center gap-2.5 text-sm font-bold cursor-pointer group"
+                            title="點擊複製 Line ID">
+                        <i class="fa-brands fa-line text-emerald-500 text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>Line</span>
+                    </button>
+
+                    <!-- Instagram 連結 -->
+                    <a href="https://instagram.com/yustfeels_" target="_blank" rel="noopener noreferrer"
+                       class="px-4 py-3 rounded-2xl bg-slate-50 hover:bg-rose-50 text-slate-700 hover:text-rose-600 border border-slate-200 hover:border-rose-200 transition-all flex items-center gap-2.5 text-sm font-bold group"
+                       title="前往 Instagram">
+                        <i class="fa-brands fa-instagram text-rose-500 text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 頁尾版權 -->
+    <footer class="max-w-4xl mx-auto px-6 pb-10 text-center text-xs text-slate-400">
+        <p>© 2026 王純琳 (Chun-Lin Wang) · 黎明技術學院 數位多媒體系</p>
+    </footer>
+
+    <!-- 專案詳情彈出視窗 (Modal) -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs transition-opacity" onclick="closeProjectModal(event)">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-7 shadow-2xl border border-slate-100 space-y-5 relative" onclick="event.stopPropagation()">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <span id="modal-tag" class="inline-block px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-bold mb-2">
+                        類別標籤
+                    </span>
+                    <h3 id="modal-title" class="text-xl font-extrabold text-slate-900">
+                        專案標題
+                    </h3>
+                </div>
+                <button onclick="closeProjectModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors cursor-pointer" aria-label="關閉視窗">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p id="modal-desc" class="text-sm text-slate-600 leading-relaxed">
+                專案詳細介紹內容。
+            </p>
+
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">學習重點與技術應用</h4>
+                <ul id="modal-highlights" class="text-sm text-slate-700 space-y-1.5 list-disc list-inside">
+                </ul>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-primary-600 text-white text-sm font-bold transition-colors cursor-pointer">
+                    關閉預覽
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 懸浮複製提示 (Toast Notification) -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transform translate-y-10 opacity-0 transition-all duration-300 ease-out pointer-events-none">
+        <div class="bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 text-sm font-medium border border-slate-700/50">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
             <span id="toast-message">已複製！</span>
         </div>
     </div>
 
-    <!-- Main Profile Card -->
-    <main class="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-2xl p-8 pt-12 relative mt-16 text-center border border-white/50">
-        
-        <!-- Profile Photo (Floating at the top) -->
-        <div class="absolute -top-20 left-1/2 -translate-x-1/2">
-            <div class="relative w-36 h-36 rounded-full p-1.5 bg-gradient-to-tr from-amber-400 to-rose-400 shadow-xl">
-                <!-- 💡 替換照片說明：請將下方 src="..." 內的網址替換為您的真實個人照片網址或檔案路徑 -->
-                <img src="https://placehold.co/400x400/fda085/ffffff?text=Photo" alt="王純琳的照片" class="w-full h-full object-cover rounded-full border-4 border-white bg-white">
-            </div>
-        </div>
-
-        <!-- Header Info -->
-        <div class="mt-8 space-y-2">
-            <h1 class="text-3xl font-black text-gray-800 tracking-wide">王純琳</h1>
-            <p class="text-sm font-bold text-rose-500 bg-rose-50 inline-block px-3 py-1 rounded-full">
-                黎明技術學院 數位多媒體系
-            </p>
-            <p class="text-gray-500 text-sm mt-4 font-medium leading-relaxed max-w-[250px] mx-auto">
-                「喜歡簡單生活，也喜歡學中文。」
-            </p>
-        </div>
-
-        <hr class="my-6 border-gray-100">
-
-        <!-- Skills & Interests -->
-        <div class="space-y-5 text-left">
-            <!-- Interests -->
-            <div>
-                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 text-center">我的興趣</h3>
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-4 py-1.5 bg-orange-100 text-orange-600 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-sm hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-microphone-lines"></i> 唱歌
-                    </span>
-                    <span class="px-4 py-1.5 bg-sky-100 text-sky-600 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-sm hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-headphones"></i> 聽音樂
-                    </span>
-                </div>
-            </div>
-
-            <!-- Skills -->
-            <div>
-                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 text-center">我的技能</h3>
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-4 py-1.5 bg-teal-100 text-teal-600 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-sm hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-person-swimming"></i> 游泳
-                    </span>
-                    <span class="px-4 py-1.5 bg-indigo-100 text-indigo-600 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-sm hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-calculator"></i> 微積分
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <hr class="my-6 border-gray-100">
-
-        <!-- Contact Section -->
-        <div>
-            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center">聯繫方式</h3>
-            <div class="flex justify-center gap-4">
-                
-                <!-- Email Button -->
-                <button onclick="copyToClipboard('bd1151016@venus.lit.edu.tw', 'Email')" class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-600 hover:bg-rose-500 hover:text-white hover:shadow-lg hover:shadow-rose-200 transition-all flex items-center justify-center text-xl group" title="複製 Email">
-                    <i class="fa-solid fa-envelope group-hover:scale-110 transition-transform"></i>
-                </button>
-
-                <!-- Line Button -->
-                <button onclick="copyToClipboard('sweettyi3', 'Line ID')" class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-600 hover:bg-green-500 hover:text-white hover:shadow-lg hover:shadow-green-200 transition-all flex items-center justify-center text-xl group" title="複製 Line ID">
-                    <i class="fa-brands fa-line group-hover:scale-110 transition-transform"></i>
-                </button>
-
-                <!-- Instagram Button -->
-                <a href="https://instagram.com/yustfeels_" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-600 hover:bg-gradient-to-tr hover:from-amber-400 hover:via-rose-500 hover:to-fuchsia-600 hover:text-white hover:shadow-lg hover:shadow-rose-200 transition-all flex items-center justify-center text-xl group" title="前往 Instagram">
-                    <i class="fa-brands fa-instagram group-hover:scale-110 transition-transform"></i>
-                </a>
-
-            </div>
-        </div>
-    </main>
-
-    <!-- Script for copy to clipboard and toast -->
+    <!-- 互動功能腳本 -->
     <script>
-        function copyToClipboard(text, type) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';
-            textarea.style.opacity = '0';
-            document.body.appendChild(textarea);
-            textarea.select();
-            
-            try {
-                document.execCommand('copy');
-                showToast(`已成功複製 ${type} !`);
-            } catch (err) {
-                showToast('複製失敗，請手動選取複製');
+        // 1. 專案展示資料（您可在此直接修改文字或新增作品）
+        const projectsData = [
+            {
+                tag: '網頁設計實作',
+                title: '響應式個人數位名片與簡介網頁',
+                desc: '以「淺色極簡與資訊專業」為核心設計理念，打造兼具個人風格與專業識別度的單一檔案個人網頁。確保在手機、平板與桌上型電腦皆有流暢的瀏覽體驗。',
+                highlights: [
+                    '採用 Tailwind CSS 實現高對比度淺色介面與自適應網格排版',
+                    '整合非同步 Clipboard API 與備援機制，提升跨裝置複製穩定度',
+                    '模組化資訊架構，方便未來持續新增作品集與學習紀錄'
+                ]
+            },
+            {
+                tag: '數位多媒體與數理',
+                title: '多媒體視覺敘事與基礎運算筆記',
+                desc: '結合黎明技術學院數位多媒體系課程訓練，將資訊版面設計與微積分邏輯推演相結合，培養兼具美感與精準度的問題解決能力。',
+                highlights: [
+                    '數位版面層次規劃與色彩心理學應用（知性靛藍與中性灰階搭配）',
+                    '微積分函數分析與邏輯架構整理能力',
+                    '跨領域學習整合：結合語言學習（中文）與多媒體內容表達'
+                ]
             }
-            
-            document.body.removeChild(textarea);
+        ];
+
+        // 2. 現代剪貼簿複製功能（含舊版瀏覽器備援）
+        async function copyToClipboard(text, type) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                    showToast(`已複製 ${type}：${text}`);
+                    return;
+                }
+                throw new Error('Fallback required');
+            } catch (err) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                try {
+                    document.execCommand('copy');
+                    showToast(`已複製 ${type}：${text}`);
+                } catch (e) {
+                    showToast('複製失敗，請手動選取複製');
+                }
+                document.body.removeChild(textarea);
+            }
         }
 
+        // 3. Toast 提示控制
         let toastTimer;
         function showToast(message) {
             const toast = document.getElementById('toast');
             const toastMessage = document.getElementById('toast-message');
-            
+
             toastMessage.textContent = message;
             toast.classList.remove('translate-y-10', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
-            
+
             clearTimeout(toastTimer);
             toastTimer = setTimeout(() => {
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-10', 'opacity-0');
-            }, 2500);
+            }, 2800);
         }
+
+        // 4. 專案 Modal 開啟與關閉控制
+        function openProjectModal(index) {
+            const data = projectsData[index];
+            if (!data) return;
+
+            document.getElementById('modal-tag').textContent = data.tag;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-desc').textContent = data.desc;
+
+            const listEl = document.getElementById('modal-highlights');
+            listEl.innerHTML = '';
+            data.highlights.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                listEl.appendChild(li);
+            });
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // 支援按 ESC 鍵關閉彈窗
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProjectModal();
+        });
     </script>
 </body>
 </html>
